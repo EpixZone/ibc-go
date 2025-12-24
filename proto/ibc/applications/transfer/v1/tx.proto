@@ -59,7 +59,10 @@ message MsgTransfer {
   // underlying client ids.
   // This only needs to be set if the channel IDs
   // are V1 channel identifiers.
-  bool use_aliasing = 10 [(amino.dont_omitempty) = true];
+  // NOTE: EpixChain patch - removed [(amino.dont_omitempty) = true] to maintain
+  // backward compatibility with wallets (like Keplr) that use older ibc-go versions.
+  // When false, this field will be omitted from Amino JSON serialization.
+  bool use_aliasing = 10;
 }
 
 // MsgTransferResponse defines the Msg/Transfer response type.
